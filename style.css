@@ -232,7 +232,7 @@ hr {
     /* [인수용] 사진 배치 및 어둡게 처리 (글씨 가독성) */
     /* 'hero-bg.jpg' 자리에 실제 사진 파일명을 넣으세요. 서버와 같은 폴더에 있어야 합니다. */
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url('hero-bg.jpg') no-repeat center center/cover;
+                url('오펜.webp') no-repeat center center/cover;
     
     /* 임시 배경색 (사진이 없을 때 시각적 확인용) */
     background-color: #475569; 
