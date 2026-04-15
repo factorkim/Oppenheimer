@@ -1,0 +1,286 @@
+/* 1. 기본 스타일 및 변수 설정 */
+:root {
+    --primary-color: #eb2577;
+    --secondary-color: #3b82f6;
+    --accent-color: #10b981;
+    --bg-color: #f8fafc;
+    --text-color: #1e293b;
+    --card-bg: #ffffff;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 2. 헤더 & 네비게이션 (Sticky & Glassmorphism) */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1rem 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    position: relative;
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* 3. 섹션 공통 레이아웃 */
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.section-padding {
+    padding: 80px 0;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h2::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 35px;
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+/* 4. 카드 및 콘텐츠 박스 디자인 */
+.content-box, .idea-box, .member-card, .methodology {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    margin-bottom: 2rem;
+}
+
+.content-box:hover, .idea-box:hover, .member-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1);
+}
+
+.dummy-text {
+    color: #64748b;
+    font-style: italic;
+    background: #f1f5f9;
+    padding: 1rem;
+    border-left: 4px solid #cbd5e1;
+    margin-top: 1rem;
+}
+
+/* 5. 시각화 영역 (Chart Placeholder) */
+.chart-placeholder {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 100%);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1.5rem 0;
+    border: 2px dashed #3b82f6;
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* 6. 게시판 스타일 */
+#comment-form {
+    display: grid;
+    gap: 1rem;
+    background: #f8fafc;
+    padding: 1.5rem;
+    border-radius: 15px;
+}
+
+.form-input, .form-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    outline: none;
+    transition: var(--transition);
+}
+
+.form-input:focus, .form-textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+button {
+    padding: 12px 24px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+button:hover {
+    background: #1d4ed8;
+    transform: scale(1.05);
+}
+
+.comment-item {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* 7. 푸터 */
+footer {
+    text-align: center;
+    padding: 4rem 0;
+    color: #94a3b8;
+    font-size: 0.9rem;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #e2e8f0, transparent);
+    margin: 40px 0;
+}
+
+/* 반응형 모바일 최적화 */
+@media (max-width: 768px) {
+    nav ul { gap: 1rem; }
+    nav a { font-size: 0.8rem; }
+    h2 { font-size: 1.8rem; }
+}
+
+/* style.css 에 추가 */
+
+/* 1. 히어로 섹션 전체 스타일 */
+.hero-section {
+    width: 100%;
+    height: 80vh; /* 화면 높이의 80%만큼 차지 (모던한 느낌) */
+    
+    /* [인수용] 사진 배치 및 어둡게 처리 (글씨 가독성) */
+    /* 'hero-bg.jpg' 자리에 실제 사진 파일명을 넣으세요. 서버와 같은 폴더에 있어야 합니다. */
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('hero-bg.jpg') no-repeat center center/cover;
+    
+    /* 임시 배경색 (사진이 없을 때 시각적 확인용) */
+    background-color: #475569; 
+
+    display: flex;
+    align-items: center; /* 세로 가운데 정렬 */
+    justify-content: center; /* 가로 가운데 정렬 */
+    text-align: center;
+    color: white; /* 어두운 배경 위에 흰색 글씨 */
+    padding: 0 20px;
+}
+
+/* 2. 히어로 콘텐츠 스타일 */
+.hero-content h1 {
+    font-size: 3.5rem; /* 크고 아름다운 제목 */
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    word-break: keep-all; /* 한글 줄바꿈 최적화 */
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin: 0 auto 2.5rem; /* 가로 가운데 정렬 및 하단 여백 */
+}
+
+/* (선택) 히어로 섹션 버튼 스타일 */
+.btn-primary {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-3px) scale(1.05); /* 마우스 올렸을 때 살짝 뜨는 효과 */
+}
+
+/* 모바일 반응형 처리 */
+@media (max-width: 768px) {
+    .hero-section { height: 60vh; }
+    .hero-content h1 { font-size: 2.5rem; }
+    .hero-content p { font-size: 1rem; }
+}
